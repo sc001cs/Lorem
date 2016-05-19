@@ -38,4 +38,10 @@ class User extends Authenticatable
 
         return $this->belongsToMany('App\Role');
     }
+
+    public function photos() {
+
+        return $this->morphMany('App\Photo', 'imageable');
+    }
+
 }

@@ -13,6 +13,7 @@
 
 use App\User;
 use App\Post;
+use App\Country;
 
 Route::get('/', function () {
     return view('welcome');
@@ -178,3 +179,36 @@ Route::get('/user/{id}/role/', function ($id) {
         return $role->name;
     }
 });
+
+Route::get('/user/country', function () {
+
+    $country = Country::find(1);
+
+    foreach ($country->posts as $post) {
+        return $post->title;
+    }
+});
+
+// Polymorphic Relations
+Route::get('/user/photo', function () {
+
+    $user = User::find(1);
+
+    foreach ($user->photos as $photo) {
+        return $photo;
+    }
+
+});
+
+// Polymorphic many to many
+Route::get('/postss/tagsss', function () {
+
+    $post = Post::find(1);
+
+    foreach ($post->tags as $tag) {
+
+        return $tag->name;
+    }
+
+});
+
